@@ -130,8 +130,6 @@ const internQ = () => {
 const generateHTML = () => {
     console.log('employee array', employeeArr)
 
-
-
     if (!fs.existsSync(directory)) {
         fs.mkdirSync(directory)
     }
@@ -139,82 +137,63 @@ const generateHTML = () => {
 }
 const generateEmployees = (employeeArr) => {
     for (let i = 0; i < employeeArr.length; i++) {
-        if (employeeArr[i].role === "Manager") {
-            generateManager(manager)
+        console.log(employeeArr[i])
+        if (employeeArr[i].getRole() === "Manager") {
+            return `
+            <div class="card m-3 col-3" style="width: 18rem;">
+                <div class="card-header">
+                    <span class="font-weight-bold">
+                    ${employeeArr[i].getName()}
+                    </span><br>
+                    ${employeeArr[i].getRole()}
+                </div>
+  
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ID: ${employeeArr[i].getId()}</li>
+                    <li class="list-group-item">EMAIL: ${employeeArr[i].getEmail()}</li>
+                    <li class="list-group-item">OFFICE NUMBER: ${employeeArr[i].getOfficeNumber()}</li>
+                </ul>
+            </div>`
         }
-        if (employeeArr[i].role === "Engineer") {
-            generateEngineer(Engineer)
+        if (employeeArr[i].getRole() === "Engineer") {
+            return `
+            <div class="card m-3 col-3" style="width: 18rem;">
+                <div class="card-header">
+                    <span class="font-weight-bold">
+                    ${employeeArr[i].getName()}
+                    </span><br>
+                    ${employeeArr[i].getRole()}
+                </div>
+  
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ID: ${employeeArr[i].getId()}</li>
+                    <li class="list-group-item">EMAIL: ${employeeArr[i].getEmail()}</li>
+                    <li class="list-group-item">GITHUB: ${employeeArr[i].getGithub()}</li>
+                </ul>
+            </div>`
         }
-        if (employeeArr[i].role === "Intern") {
-            generateIntern(Intern);
+        if (employeeArr[i].getRole() === "Intern") {
+            return `
+            <div class="card m-3 col-3" style="width: 18rem;">
+                <div class="card-header">
+                    <span class="font-weight-bold">
+                    ${employeeArr[i].getName()}
+                    </span><br>
+                    ${employeeArr[i].getRole()}
+                </div>
+  
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ID: ${employeeArr[i].getId()}</li>
+                    <li class="list-group-item">EMAIL: ${employeeArr[i].getEmail()}</li>
+                    <li class="list-group-item">SCHOOL: ${employeeArr[i].getSchool()}</li>
+                </ul>
+            </div>`
         }
+       
     }
-
-
 }
 
-const generateManager = (manager) => {
-    console.log('manager', employee.getRole())
-    return `
-        <div class="card m-3 col-3" style="width: 18rem;">
-          <div class="card-header">
-            <span class="font-weight-bold">
-              // Name: ${employee.getName()}
-            </span><br>
-            // Manager
-          </div>
-  
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">ID: ${manager.getId()}</li>
-            <li class="list-group-item">EMAIL: ${manager.getEmail()}</li>
-            <li class="list-group-item">OFFICE NUMBER: ${manager.getOfficeNumber()}</li>
-          </ul>
-        </div>
-        `
-}
-
-const generateEngineer = (engineer) => {
-    return `
-  <div class="card m-3 col-3" style="width: 18rem;">
-    <div class="card-header">
-      <span class="font-weight-bold">
-        ${engineer.getName()}
-      </span><br>
-      // Engineer
-    </div>
-  
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">ID: ${engineer.getId()}</li>
-      <li class="list-group-item">EMAIL: ${engineer.getEmail()}</li>
-      <li class="list-group-item">GITHUB: ${engineer.getGithub()}</li>
-    </ul>
-  </div>
-  `
-}
-
-const generateIntern = (intern) => {
-    return `
-    <div class="card m-3 col-3" style="width: 18rem;">
-      <div class="card-header">
-        <span class="font-weight-bold">
-          ${intern.getName()}
-        </span><br>
-        // Intern
-      </div>
-  
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID: ${intern.getId()}</li>
-        <li class="list-group-item">EMAIL: ${intern.getEmail()}</li>
-        <li class="list-group-item">SCHOOL: ${intern.getSchool()}</li>
-      </ul>
-    </div>
-    `
-}
-
-
-const render = () => {
-
-
+const render = (employeeArr) => {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -230,7 +209,6 @@ const render = () => {
     
     <body class="container">
       <header class="container">
-        <!-- Image and text -->
         <nav class="navbar navbar-light bg-light">
           <a class="navbar-brand" href="#">
             My Team
@@ -248,14 +226,9 @@ const render = () => {
     
     </html>
     `
-
-
-}
+};
 
 
 
 
 init()
-
-
-module.exports = employeeArr;
