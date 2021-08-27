@@ -1,11 +1,21 @@
 
+const generateEmployees = (employees) => {
+  // Use .filter or .forEach to parse array and get individual role values?
+  if (employees.role === "Manager") {
+    generateManager();
+    console.log('manager', manager())
+  }
+  
+            
+}
 
-const generateManager = (manager) => {
+const generateManager = (employee) => {
+  console.log('manager', employee.getRole())
   return `
       <div class="card m-3 col-3" style="width: 18rem;">
         <div class="card-header">
           <span class="font-weight-bold">
-            // Name: ${manager.getName()}
+            // Name: ${employee.getName()}
           </span><br>
           // Manager
         </div>
@@ -57,7 +67,9 @@ const generateIntern = (intern) => {
   `
 }
 
-module.exports = (manager, engineer, intern) => {
+module.exports = (employees) => {
+
+
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -83,15 +95,7 @@ module.exports = (manager, engineer, intern) => {
     <main class="container">
       <div>
         <div class="row">
-        <!-- If manager -->
-        ${generateManager(manager)}
-
-        <!-- If engineer -->
-        ${generateEngineer(engineer)}
-
-        <!-- if intern -->
-        ${generateIntern(intern)}
-
+        ${generateEmployees(employees)}
         </div>
       </div>
     </main>

@@ -135,7 +135,10 @@ const generateHTML = () => {
     fs.writeFileSync(outputFile, render(employeeArr), 'utf-8')
 }
 
+
+
+
 init()
    
 
-
+module.exports = employeeArr;
