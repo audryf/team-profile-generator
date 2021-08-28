@@ -9,7 +9,7 @@ const Manager = require('./lib/Manager');
 const employeeArr = [];
 const directory = path.resolve(__dirname, 'output')
 const outputFile = path.join(directory, 'myTeam.html')
-// const render = require('./src/generateHTML.js')
+const htmlString = [];
 
 const init = () => {
     return inquirer.prompt([
@@ -102,7 +102,7 @@ const internQ = () => {
         {
             type: 'input',
             name: 'name',
-            message: "What is the employee's name?",
+            message: "What is the employee's full name?"
         },
         {
             type: 'input',
@@ -128,8 +128,6 @@ const internQ = () => {
 }
 
 const generateHTML = () => {
-    console.log('employee array', employeeArr)
-
     if (!fs.existsSync(directory)) {
         fs.mkdirSync(directory)
     }
@@ -137,10 +135,10 @@ const generateHTML = () => {
 }
 const generateEmployees = (employeeArr) => {
     for (let i = 0; i < employeeArr.length; i++) {
-        console.log(employeeArr[i])
         if (employeeArr[i].getRole() === "Manager") {
-            return `
-            <div class="card m-3 col-3" style="width: 18rem;">
+            htmlString.push(
+                `
+            <div class="card m-3 col-lg-3" style="width: 18rem;">
                 <div class="card-header">
                     <span class="font-weight-bold">
                     ${employeeArr[i].getName()}
@@ -154,27 +152,34 @@ const generateEmployees = (employeeArr) => {
                     <li class="list-group-item">OFFICE NUMBER: ${employeeArr[i].getOfficeNumber()}</li>
                 </ul>
             </div>`
+            ) 
         }
+    
+
         if (employeeArr[i].getRole() === "Engineer") {
-            return `
-            <div class="card m-3 col-3" style="width: 18rem;">
-                <div class="card-header">
-                    <span class="font-weight-bold">
-                    ${employeeArr[i].getName()}
-                    </span><br>
-                    ${employeeArr[i].getRole()}
-                </div>
-  
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${employeeArr[i].getId()}</li>
-                    <li class="list-group-item">EMAIL: ${employeeArr[i].getEmail()}</li>
-                    <li class="list-group-item">GITHUB: ${employeeArr[i].getGithub()}</li>
-                </ul>
-            </div>`
+            htmlString.push(
+                `
+                <div class="card m-3 col-lg-3" style="width: 18rem;">
+                    <div class="card-header">
+                        <span class="font-weight-bold">
+                        ${employeeArr[i].getName()}
+                        </span><br>
+                        ${employeeArr[i].getRole()}
+                    </div>
+      
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: ${employeeArr[i].getId()}</li>
+                        <li class="list-group-item">EMAIL: ${employeeArr[i].getEmail()}</li>
+                        <li class="list-group-item">GITHUB: ${employeeArr[i].getGithub()}</li>
+                    </ul>
+                </div>`
+            ) 
         }
+
         if (employeeArr[i].getRole() === "Intern") {
-            return `
-            <div class="card m-3 col-3" style="width: 18rem;">
+            htmlString.push(
+                `
+            <div class="card m-3 col-lg-3" style="width: 18rem;">
                 <div class="card-header">
                     <span class="font-weight-bold">
                     ${employeeArr[i].getName()}
@@ -188,9 +193,10 @@ const generateEmployees = (employeeArr) => {
                     <li class="list-group-item">SCHOOL: ${employeeArr[i].getSchool()}</li>
                 </ul>
             </div>`
+            ) 
         }
-       
     }
+    return htmlString.join('')
 }
 
 const render = (employeeArr) => {
@@ -217,7 +223,7 @@ const render = (employeeArr) => {
       </header>
       <main class="container">
         <div>
-          <div class="row">
+            <div class="row justify-content-sm-center">
           ${generateEmployees(employeeArr)}
           </div>
         </div>
