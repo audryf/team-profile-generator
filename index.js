@@ -231,7 +231,7 @@ const generateEmployees = (employeeArr) => {
         if (employeeArr[i].getRole() === "Manager") {
             htmlString.push(
                 `
-            <div class="card m-3 col-lg-3" style="width: 18rem; height: 19rem;">
+            <div class="card m-3 col-lg-3 shadow" style="width: 18rem; height: 19rem;">
                 <div class="card-header">
                     <span class="font-weight-bold">
                     ${employeeArr[i].getName()}
@@ -241,7 +241,7 @@ const generateEmployees = (employeeArr) => {
   
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${employeeArr[i].getId()}</li>
-                    <li class="list-group-item">EMAIL: ${employeeArr[i].getEmail()}</li>
+                    <li class="list-group-item">EMAIL: <a href="mailto: ${employeeArr[i].getEmail()}" target="_blank">${employeeArr[i].getEmail()}</a></li>
                     <li class="list-group-item">OFFICE NUMBER: ${employeeArr[i].getOfficeNumber()}</li>
                 </ul>
             </div>`
@@ -252,7 +252,7 @@ const generateEmployees = (employeeArr) => {
         if (employeeArr[i].getRole() === "Engineer") {
             htmlString.push(
                 `
-                <div class="card m-3 col-lg-3" style="width: 18rem; height: 19rem;">
+                <div class="card m-3 col-lg-3 shadow" style="width: 18rem; height: 19rem;">
                     <div class="card-header">
                         <span class="font-weight-bold">
                         ${employeeArr[i].getName()}
@@ -262,8 +262,8 @@ const generateEmployees = (employeeArr) => {
       
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">ID: ${employeeArr[i].getId()}</li>
-                        <li class="list-group-item">EMAIL: ${employeeArr[i].getEmail()}</li>
-                        <li class="list-group-item">GITHUB: ${employeeArr[i].getGithub()}</li>
+                        <li class="list-group-item">EMAIL: <a href="mailto: ${employeeArr[i].getEmail()}" target="_blank">${employeeArr[i].getEmail()}</a></li>
+                        <li class="list-group-item">GITHUB: <a href="https://github.com/${employeeArr[i].getGithub()}" target="_blank">${employeeArr[i].getGithub()}</a></li>
                     </ul>
                 </div>`
             )
@@ -272,7 +272,7 @@ const generateEmployees = (employeeArr) => {
         if (employeeArr[i].getRole() === "Intern") {
             htmlString.push(
                 `
-            <div class="card m-3 col-lg-3" style="width: 18rem; height:19rem;">
+            <div class="card m-3 col-lg-3 shadow" style="width: 18rem; height:19rem;">
                 <div class="card-header">
                     <span class="font-weight-bold">
                     ${employeeArr[i].getName()}
@@ -282,7 +282,7 @@ const generateEmployees = (employeeArr) => {
   
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${employeeArr[i].getId()}</li>
-                    <li class="list-group-item">EMAIL: ${employeeArr[i].getEmail()}</li>
+                    <li class="list-group-item">EMAIL: <a href="mailto: ${employeeArr[i].getEmail()}" target="_blank">${employeeArr[i].getEmail()}</a></li>
                     <li class="list-group-item">SCHOOL: ${employeeArr[i].getSchool()}</li>
                 </ul>
             </div>`
@@ -303,12 +303,13 @@ const render = (employeeArr) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="../assets/style.css">
       <title>Team Profile</title>
     </head>
     
     <body class="container">
       <header class="container">
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-light bg-light shadow">
           <a class="navbar-brand" href="#">
             My Team
           </a>
