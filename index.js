@@ -1,14 +1,16 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
+const validator = require('email-validator');
 
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 
+const directory = path.resolve(__dirname, 'output');
+const outputFile = path.join(directory, 'myTeam.html');
+
 const employeeArr = [];
-const directory = path.resolve(__dirname, 'output')
-const outputFile = path.join(directory, 'myTeam.html')
 const htmlString = [];
 
 const init = () => {
@@ -43,21 +45,53 @@ const managerQ = () => {
             type: 'input',
             name: 'name',
             message: "What is the employee's name?",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log("Required!");
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
-            message: "What is this employee's id number?"
+            message: "What is this employee's id number?",
+            validate: idInput => {
+                if (idInput) {
+                    return true;
+                } else {
+                    console.log("Required!"); 
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
-            message: "What is this employee's email address?"
+            message: "What is this employee's email address?",
+            validate: emailInput => {
+                if (validator.validate(emailInput)) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid email address.');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'officeNumber',
-            message: 'What is their office number?'
+            message: 'What is their office number?',
+            validate: officeInput => {
+                if (officeInput) {
+                    return true;
+                } else {
+                    console.log("Required!"); 
+                    return false;
+                }
+            }
         }
     ])
         .then(answers => {
@@ -73,21 +107,51 @@ const engineerQ = () => {
             type: 'input',
             name: 'name',
             message: "What is the employee's name?",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log("Required!"); 
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
-            message: "What is this employee's id number?"
+            message: "What is this employee's id number?",
+            validate: idInput => {
+                if (idInput) {
+                    return true;
+                } else {
+                    console.log("Required!");
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
-            message: "What is this employee's email address?"
+            message: "What is this employee's email address?",
+            validate: emailInput => {
+                if (validator.validate(emailInput)) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid email address.');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'github',
-            message: 'What is their GitHub username?'
+            message: 'What is their GitHub username?',
+            validate: githubInput => {
+                if (githubInput) {
+                    return true;
+                } else {
+                    console.log("Required!");
+                }
+            }
         }
     ])
         .then(answers => {
@@ -102,22 +166,51 @@ const internQ = () => {
         {
             type: 'input',
             name: 'name',
-            message: "What is the employee's full name?"
+            message: "What is the employee's full name?",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log("Required!"); return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
-            message: "What is this employee's id number?"
+            message: "What is this employee's id number?",
+            validate: idInput => {
+                if (idInput) {
+                    return true;
+                } else {
+                    console.log("Required!");
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
-            message: "What is this employee's email address?"
+            message: "What is this employee's email address?",
+            validate: emailInput => {
+                if (validator.validate(emailInput)) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid email address.');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'school',
-            message: 'What is the name of their school?'
+            message: 'What is the name of their school?',
+            validate: schoolInput => {
+                if (schoolInput) {
+                    return true;
+                } else {
+                    console.log("Required!");
+                }
+            }
         }
     ])
         .then(answers => {
@@ -138,7 +231,7 @@ const generateEmployees = (employeeArr) => {
         if (employeeArr[i].getRole() === "Manager") {
             htmlString.push(
                 `
-            <div class="card m-3 col-lg-3" style="width: 18rem;">
+            <div class="card m-3 col-lg-3" style="width: 18rem; height: 19rem;">
                 <div class="card-header">
                     <span class="font-weight-bold">
                     ${employeeArr[i].getName()}
@@ -152,14 +245,14 @@ const generateEmployees = (employeeArr) => {
                     <li class="list-group-item">OFFICE NUMBER: ${employeeArr[i].getOfficeNumber()}</li>
                 </ul>
             </div>`
-            ) 
+            )
         }
-    
+
 
         if (employeeArr[i].getRole() === "Engineer") {
             htmlString.push(
                 `
-                <div class="card m-3 col-lg-3" style="width: 18rem;">
+                <div class="card m-3 col-lg-3" style="width: 18rem; height: 19rem;">
                     <div class="card-header">
                         <span class="font-weight-bold">
                         ${employeeArr[i].getName()}
@@ -173,13 +266,13 @@ const generateEmployees = (employeeArr) => {
                         <li class="list-group-item">GITHUB: ${employeeArr[i].getGithub()}</li>
                     </ul>
                 </div>`
-            ) 
+            )
         }
 
         if (employeeArr[i].getRole() === "Intern") {
             htmlString.push(
                 `
-            <div class="card m-3 col-lg-3" style="width: 18rem;">
+            <div class="card m-3 col-lg-3" style="width: 18rem; height:19rem;">
                 <div class="card-header">
                     <span class="font-weight-bold">
                     ${employeeArr[i].getName()}
@@ -193,7 +286,7 @@ const generateEmployees = (employeeArr) => {
                     <li class="list-group-item">SCHOOL: ${employeeArr[i].getSchool()}</li>
                 </ul>
             </div>`
-            ) 
+            )
         }
     }
     return htmlString.join('')
@@ -223,7 +316,7 @@ const render = (employeeArr) => {
       </header>
       <main class="container">
         <div>
-            <div class="row justify-content-sm-center">
+            <div class="row justify-content-center">
           ${generateEmployees(employeeArr)}
           </div>
         </div>
