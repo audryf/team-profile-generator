@@ -18,7 +18,7 @@ A NodeJS command line application using npm Inquirer and Jest to create a Team P
 
 ## Installation
 ✅
-First, you will need to clone this repository to your computer. Once in the root directory, run  `npm install`. Follow this [link](https://drive.google.com/file/d/1YX-S1O8JR2WJw4UGo8f7LfJCwHz7IRZ6/view) to watch a step by step video for installation.
+First, you will need to clone this repository to your computer. Once in the root directory, run  `npm install`. Follow this [link](https://drive.google.com/file/d/1PR9M0HnFXLToswOeTWrMLYKuR_B_2FHb/view) to watch a step by step video for installation.
 <br>
 <br>
 
