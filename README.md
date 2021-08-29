@@ -24,7 +24,7 @@ First, you will need to clone this repository to your computer. Once in the root
 
 ## Usage
 💻
-To use this application, run  `node index.js` in the terminal at the root of the project directory. You will then answers the prompts shown so a new `myTeam.html` file can be created in the `output` folder. Follow this [link](https://drive.google.com/file/d/1klERvaX95argNS7heJ26rqfRw2Yf8vSo/view) to see how to video.
+To use this application, run  `node index.js` in the terminal at the root of the project directory. You will then answers the prompts shown so a new `myTeam.html` file can be created in the `output` folder. Follow this [link](https://drive.google.com/file/d/1tlXjZWCT_dylyd_MpXk5Dgq9JdGpkFij/view) to see how to video.
 <br>
 <br>
 
